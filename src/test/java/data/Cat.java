@@ -23,23 +23,11 @@ public class Cat extends Animal {
         return field4;
     }
 
-    public void setField4(String field4) {
-        this.field4 = field4;
-    }
-
     public Integer getField5() {
         return field5;
     }
 
-    public void setField5(Integer field5) {
-        this.field5 = field5;
-    }
-
     public String getField6() {
         return field6;
-    }
-
-    public void setField6(String field6) {
-        this.field6 = field6;
     }
 }

@@ -4,6 +4,7 @@ import data.parent.Animal;
 import row.RowMapper;
 
 public class Pig extends Animal {
+
     @RowMapper(name = "field4")
     private String field4;
     @RowMapper(name = "field5")
@@ -22,35 +23,11 @@ public class Pig extends Animal {
         return field4;
     }
 
-    public void setField4(String field4) {
-        this.field4 = field4;
-    }
-
     public String getField5() {
         return field5;
     }
 
-    public void setField5(String field5) {
-        this.field5 = field5;
-    }
-
     public String getField6() {
         return field6;
-    }
-
-    public void setField6(String field6) {
-        this.field6 = field6;
-    }
-
-    @Override
-    public String toString() {
-        return "data.Dog{" +
-                "field1='" + getField1() + '\'' +
-                ", field2='" + getField2() + '\'' +
-                ", field3='" + getField3() + '\'' +
-                ", field4='" + field4 + '\'' +
-                ", field5='" + field5 + '\'' +
-                ", field6='" + field6 + '\'' +
-                '}';
     }
 }
