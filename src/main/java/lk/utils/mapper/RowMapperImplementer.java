@@ -10,8 +10,7 @@ class RowMapperImplementer{
 
     public List<Field> removeDuplicate(List<Field> fields) {
         for (int i = 0; i < fields.size(); i++) {
-            Field field1 = fields.get(i);
-            String field1Name = field1.getAnnotation(RowMapper.class).name();
+            String field1Name = fields.get(i).getAnnotation(RowMapper.class).name();
             for (int j = i + 1; j < fields.size(); j++) {
                 Field field2 = fields.get(j);
                 String field2Name = field2.getAnnotation(RowMapper.class).name();
