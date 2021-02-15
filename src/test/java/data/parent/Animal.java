@@ -1,6 +1,6 @@
 package data.parent;
 
-import row.RowMapper;
+import lk.utils.mapper.annotation.RowMapper;
 
 public class Animal {
     @RowMapper(name = "field1")

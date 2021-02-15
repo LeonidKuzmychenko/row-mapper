@@ -1,7 +1,7 @@
 package data;
 
 import data.parent.Animal;
-import row.RowMapper;
+import lk.utils.mapper.annotation.RowMapper;
 
 public class Dog extends Animal {
 
