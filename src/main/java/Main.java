@@ -1,4 +1,4 @@
-import row.RowMapper;
+import row.RowMapperService;
 
 public class Main {
 
@@ -6,7 +6,7 @@ public class Main {
         Dog dog = new Dog("1", null, "3", null, "5", "6");
         Cat cat = new Cat("01", "02", null, "04", "05", "06");
         System.out.println(dog);
-        dog = new RowMapper<Dog>().join(dog, cat);
+        dog = new RowMapperService<Dog>().join(dog, cat);
         System.out.println(dog);
     }
 

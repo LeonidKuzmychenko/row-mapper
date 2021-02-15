@@ -1,6 +1,9 @@
+import row.RowMapper;
+
 public class Animal {
 
-    private Integer field4 = null;
+    @RowMapper(name = "field4")
+    private Integer field45 = null;
     private String field1;
     private String field2;
     private String field3;
