@@ -1,6 +1,6 @@
-package data;
+package data.animals;
 
-import data.parent.Animal;
+import data.animals.parent.Animal;
 import lk.utils.mapper.annotation.RowMapper;
 
 public class Lion extends Animal {

@@ -11,10 +11,12 @@ class RowMapperImplementer{
     public List<Field> removeDuplicate(List<Field> fields) {
         for (int i = 0; i < fields.size(); i++) {
             String field1Name = fields.get(i).getAnnotation(RowMapper.class).name();
+            Class<?> field1Type = fields.get(i).getType();
             for (int j = i + 1; j < fields.size(); j++) {
                 Field field2 = fields.get(j);
+                Class<?> field2Type = field2.getType();
                 String field2Name = field2.getAnnotation(RowMapper.class).name();
-                if (field1Name.equals(field2Name)) {
+                if (field1Name.equals(field2Name) && field1Type == field2Type) {
                     fields.remove(field2);
                 }
             }
