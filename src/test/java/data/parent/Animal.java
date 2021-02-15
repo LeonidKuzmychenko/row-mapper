@@ -1,3 +1,5 @@
+package data.parent;
+
 import row.RowMapper;
 
 public class Animal {
@@ -41,7 +43,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
+        return "data.parent.Animal{" +
                 "field1='" + field1 + '\'' +
                 ", field2='" + field2 + '\'' +
                 ", field3='" + field3 + '\'' +

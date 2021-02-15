@@ -1,3 +1,6 @@
+package data;
+
+import data.parent.Animal;
 import row.RowMapper;
 
 public class Cat extends Animal {

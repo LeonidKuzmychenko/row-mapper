@@ -1,8 +1,12 @@
+import data.parent.Animal;
+import data.Cat;
+import data.Dog;
+import data.Pig;
 import org.junit.Assert;
 import org.junit.Test;
 import row.RowMapperService;
 
-public class RowMapperTest {
+public class RowMapperTests {
 
     private final RowMapperService<Dog> rowMapperService = new RowMapperService<>();
 
