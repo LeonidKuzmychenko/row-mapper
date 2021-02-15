@@ -53,7 +53,7 @@ public class RowMapperTests {
     }
 
     @Test
-    public void allFieldsWithOverrideTypeInChildV2() {
+    public void allFieldsWithOverrideTypeInParent() {
         Dog dog = new Dog("1", null, null, "4", "5", "6");
         Chair chair = new Chair("1pc", "2pc",3, 22,"3pc", "4c", "5c", "6c");
         dog = rowMapperService.join(dog, chair);
