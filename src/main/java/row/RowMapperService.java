@@ -22,14 +22,15 @@ public class RowMapperService<T> {
         fromFields = removeDuplicate(fromFields);
 
         //удаляю те поля, которые не равны null
-        toFields = removeNull(toFields, to,false);
+        toFields = removeNull(toFields, to, false);
         //удаляю те поля, которые равны null
-        fromFields = removeNull(fromFields, from,true);
+        fromFields = removeNull(fromFields, from, true);
 
+        //объеденяю два списка
         return mergeFields(to, from, toFields, fromFields);
     }
 
-    public List<Field> removeDuplicate(List<Field> fields) {
+    private List<Field> removeDuplicate(List<Field> fields) {
         for (int i = 0; i < fields.size(); i++) {
             Field field1 = fields.get(i);
             String field1Name = getAnnotationName(field1);
@@ -44,31 +45,35 @@ public class RowMapperService<T> {
         return fields;
     }
 
-    public List<Field> removeWithoutAnnotation(List<Field> fields) {
-        return fields.stream().filter(field -> {
-            RowMapper rowMapper = field.getAnnotation(RowMapper.class);
-            return rowMapper != null && !rowMapper.name().trim().isEmpty();
-        }).collect(Collectors.toList());
+    private List<Field> removeWithoutAnnotation(List<Field> fields) {
+        return fields.stream().filter(this::withoutAnnotationFilter).collect(Collectors.toList());
     }
 
-    public List<Field> removeNull(List<Field> fields, Object object, boolean revers) {
-        return fields.stream().filter(it -> {
-            try {
-                it.setAccessible(true);
-                return (it.get(object) == null) != revers;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }).collect(Collectors.toList());
+    private boolean withoutAnnotationFilter(Field field) {
+        RowMapper rowMapper = field.getAnnotation(RowMapper.class);
+        return rowMapper != null && !rowMapper.name().trim().isEmpty();
     }
 
-    public T mergeFields(T to, Object from, List<Field> toFields, List<Field> fromFields) {
+    private List<Field> removeNull(List<Field> fields, Object object, boolean revers) {
+        return fields.stream().filter(it -> nullFilter(it, object, revers)).collect(Collectors.toList());
+    }
+
+    private boolean nullFilter(Field fields, Object object, boolean revers) {
+        try {
+            fields.setAccessible(true);
+            return (fields.get(object) == null) != revers;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private T mergeFields(T to, Object from, List<Field> toFields, List<Field> fromFields) {
         for (Field fromField : fromFields) {
             for (Field toField : toFields) {
                 String toName = getAnnotationName(toField);
                 String fromName = getAnnotationName(fromField);
-                if (toName.equals(fromName)) {
+                if (toName.equals(fromName) && (toField.getType() == fromField.getType())) {
                     try {
                         toField.set(to, fromField.get(from));
                     } catch (IllegalAccessException e) {
@@ -80,7 +85,7 @@ public class RowMapperService<T> {
         return to;
     }
 
-    public String getAnnotationName(Field field) {
+    private String getAnnotationName(Field field) {
         return field.getAnnotation(RowMapper.class).name();
     }
 }

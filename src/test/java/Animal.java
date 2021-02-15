@@ -2,13 +2,12 @@ import row.RowMapper;
 
 public class Animal {
 
-    @RowMapper(name = "field4")
-    private Integer field45 = null;
+    @RowMapper(name = "field1")
     private String field1;
+    @RowMapper(name = "field2")
     private String field2;
+    @RowMapper(name = "field3")
     private String field3;
-    private String field5 = null;
-
 
     public Animal(String field1, String field2, String field3) {
         this.field1 = field1;

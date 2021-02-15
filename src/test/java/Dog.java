@@ -1,10 +1,12 @@
 import row.RowMapper;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
 
     @RowMapper(name = "field4")
     private String field4;
+    @RowMapper(name = "field5")
     private String field5;
+    @RowMapper(name = "field6")
     private String field6;
 
     public Dog(String field1, String field2, String field3, String field4, String field5, String field6) {
